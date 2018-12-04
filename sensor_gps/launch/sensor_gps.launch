@@ -1,0 +1,15 @@
+<launch>
+
+<node name="gps_navsat" pkg="nmea_navsat_driver" type="nmea_serial_driver">
+  <param name="port" value="/dev/ttyACM0" />
+  <param name="baud" value="9600" />
+  <param name="frame_id" value="gps" />
+</node>
+
+<node name="gps_conv" pkg="gps_common" type="utm_odometry_node">
+  <remap from="odom" to="vo" />
+  <param name="rot_covariance" value="99999" />
+  <!--<param name="frame_id" value="base_footprint" />-->
+</node>
+
+</launch>
